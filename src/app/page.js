@@ -1,4 +1,4 @@
-import AnimeList from "./components";
+import AnimeList from "./components/AnimeList/page";
 
 const Home = async () => {
 
