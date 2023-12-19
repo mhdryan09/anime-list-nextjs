@@ -9,11 +9,11 @@ const Home = async () => {
   return (
     <div>
       <h1>PALING POPULER</h1>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
         {animeList.data.map(anime => {
           return (
             <div key={anime.mal_id} className="shadow-xl">
-              <AnimeList title={anime.title} images={anime.images.webp.image_url} />
+              <AnimeList title={anime.title} images={anime.images.webp.image_url} id={anime.mal_id} />
             </div>
           )
         })}

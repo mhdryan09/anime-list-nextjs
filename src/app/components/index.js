@@ -1,13 +1,13 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
-const AnimeList = ({ title, images }) => {
+const AnimeList = ({ title, images, id }) => {
   return (
-    <div className='bg-indigo-500'>
-      <Image src={images} alt='image' width={600} height={400} />
-      <h3>{title}</h3>
-    </div>
-
+    <Link href={`/${id}`} className='cursor-pointer'>
+      <Image src={images} alt='image' width={350} height={350} />
+      <h3 className='p-4 font-bold text-md md:text-xl'>{title}</h3>
+    </Link>
   )
 }
 
