@@ -1,8 +1,10 @@
+import AnimeList from "./components";
 
 export default function Home() {
   return (
     <div>
-      <h1>CUY ANIME LIST</h1>
+      <h1>PALING POPULER</h1>
+      <AnimeList />
     </div>
   )
 }
