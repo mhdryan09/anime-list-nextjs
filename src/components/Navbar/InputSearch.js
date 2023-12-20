@@ -17,6 +17,11 @@ const InputSearch = () => {
       event.preventDefault();
       const keyword = searchRef.current.value;
       router.push(`/search/${keyword}`);
+
+      // cek jika inputan kosong
+      if(keyword === "") {
+        return;
+      }
     }
   }
 
