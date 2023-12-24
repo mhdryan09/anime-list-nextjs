@@ -10,30 +10,31 @@ const Pagination = ({ page, lastPage, setPage }) => {
   };
 
   const handlePrevPage = () => {
-    // validasi apabila halaman di bawah 1
-    if (page > 1) {
-      setPage((prevState) => prevState - 1);
-      scrollTop();
-    }
+    setPage((prevState) => prevState - 1);
+    scrollTop();
   };
 
   return (
-    <div className="flex justify-center items-center py-4 px-2 gap-4 text-primary text-2xl">
-      <button
-        className="transition-all hover:text-accent"
-        onClick={handlePrevPage}
-      >
-        Prev
-      </button>
+    <div className="flex items-center justify-center gap-4 px-2 py-4 text-2xl text-primary">
+      {page <= 1 ? null : (
+        <button
+          className="transition-all hover:text-accent"
+          onClick={handlePrevPage}
+        >
+          Prev
+        </button>
+      )}
       <p>
         {page} of {lastPage}
       </p>
-      <button
-        className="transition-all hover:text-accent"
-        onClick={handleNextPage}
-      >
-        Next
-      </button>
+      {page >= lastPage ? null : (
+        <button
+          className="transition-all hover:text-accent"
+          onClick={handleNextPage}
+        >
+          Next
+        </button>
+      )}
     </div>
   );
 };
