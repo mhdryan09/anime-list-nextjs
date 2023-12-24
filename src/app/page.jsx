@@ -2,16 +2,14 @@
 import AnimeList from "../components/AnimeList";
 import Header from "@/components/AnimeList/Header";
 import { useEffect, useState } from "react";
+import { getAnimeResponse } from "@/app/lib/api-lib";
 
 const Home = () => {
   const [limit, setLimit] = useState(8);
   const [topAnime, setTopAnime] = useState([]);
 
   const fetchData = async (limit) => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=${limit}`
-    );
-    const topAnime = await response.json();
+    const topAnime = await getAnimeResponse("top/anime", `limit=${limit}`);
     setTopAnime(topAnime);
   };
 
@@ -43,7 +41,7 @@ const Home = () => {
           <div className="flex justify-center py-5">
             <button
               onClick={handleLoadmore}
-              className="px-4 py-2 bg-accent text-primary rounded"
+              className="px-4 py-2 rounded bg-accent text-primary"
             >
               Load More
             </button>

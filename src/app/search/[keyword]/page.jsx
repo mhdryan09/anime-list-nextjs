@@ -1,11 +1,11 @@
+import { getAnimeResponse } from "@/app/lib/api-lib";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
 
 const SearchPage = async ({ params }) => {
   const { keyword } = params;
   const decodedKeyword = decodeURI(keyword); // apabila ada keyword yg mengandung tanda khusus kita singkirkan
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${decodedKeyword}`);
-  const searchAnime = await response.json();
+  const searchAnime = await getAnimeResponse("anime", `q=${decodedKeyword}`);
 
   return (
     <>
@@ -15,7 +15,7 @@ const SearchPage = async ({ params }) => {
         <AnimeList api={searchAnime} />
       </section>
     </>
-  )
-}
+  );
+};
 
 export default SearchPage;
