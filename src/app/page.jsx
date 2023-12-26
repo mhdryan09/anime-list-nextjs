@@ -2,15 +2,25 @@
 import AnimeList from "../components/AnimeList";
 import Header from "@/components/AnimeList/Header";
 import { useEffect, useState } from "react";
-import { getAnimeResponse } from "@/app/lib/api-lib";
+import { getAnimeResponse, getNestedAnimeResponse } from "@/lib/api-lib";
 
 const Home = () => {
   const [limit, setLimit] = useState(8);
   const [topAnime, setTopAnime] = useState([]);
+  const [recommendedAnime, setRecommendedAnime] = useState([]);
 
   const fetchData = async (limit) => {
     const topAnime = await getAnimeResponse("top/anime", `limit=${limit}`);
     setTopAnime(topAnime);
+
+    let recommendedAnime = await getNestedAnimeResponse(
+      "recommendations/anime",
+      "entry"
+    );
+    recommendedAnime = {
+      data: recommendedAnime.slice(0, 8),
+    };
+    setRecommendedAnime(recommendedAnime);
   };
 
   useEffect(() => {
@@ -47,6 +57,12 @@ const Home = () => {
             </button>
           </div>
         )}
+      </section>
+
+      {/* anime Recommendations */}
+      <section>
+        <Header title="Rekomendasi" />
+        <AnimeList api={recommendedAnime} />
       </section>
     </>
   );

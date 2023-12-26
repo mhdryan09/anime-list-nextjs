@@ -1,4 +1,4 @@
-import { getAnimeResponse } from "@/app/lib/api-lib";
+import { getAnimeResponse } from "@/lib/api-lib";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
 
