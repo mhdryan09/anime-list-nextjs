@@ -15,7 +15,7 @@ const InputSearch = () => {
     const keyword = searchRef.current.value;
 
     // jika inputan kosong
-    if (keyword.trim() == "") {
+    if (keyword.trim() == "" || !keyword) {
       return;
     }
     // jika tombol enter ditekan

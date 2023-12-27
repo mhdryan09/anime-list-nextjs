@@ -2,7 +2,11 @@
 import AnimeList from "../components/AnimeList";
 import Header from "@/components/AnimeList/Header";
 import { useEffect, useState } from "react";
-import { getAnimeResponse, getNestedAnimeResponse } from "@/lib/api-lib";
+import {
+  getAnimeResponse,
+  getNestedAnimeResponse,
+  reproduce,
+} from "@/lib/api-lib";
 
 const Home = () => {
   const [limit, setLimit] = useState(8);
@@ -13,14 +17,12 @@ const Home = () => {
     const topAnime = await getAnimeResponse("top/anime", `limit=${limit}`);
     setTopAnime(topAnime);
 
-    let recommendedAnime = await getNestedAnimeResponse(
+    let rekomendasi = await getNestedAnimeResponse(
       "recommendations/anime",
       "entry"
     );
-    recommendedAnime = {
-      data: recommendedAnime.slice(0, 8),
-    };
-    setRecommendedAnime(recommendedAnime);
+    rekomendasi = reproduce(rekomendasi, 8);
+    setRecommendedAnime(rekomendasi);
   };
 
   useEffect(() => {
